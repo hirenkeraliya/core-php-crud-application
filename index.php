@@ -4,7 +4,7 @@
     $results = mysqli_query($conn, "select * from datas");
 
     if (isset($_GET['id1'])) {
-        $delete = $_GET['id1'];
+        $deleteId = $_GET['id1'];
 
         $selectData = mysqli_query($conn, "select * from datas where id = '$deleteId'");
 
@@ -13,8 +13,10 @@
                 unlink('images/'.$records['avatar']);
             }
         }
-        $deleted = mysqli_query($conn, "delete from datas where id = '$delete'");
+        $deleted = mysqli_query($conn, "delete from datas where id = '$deleteId'");
     }
+    $results = mysqli_query($conn, "select * from datas");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
