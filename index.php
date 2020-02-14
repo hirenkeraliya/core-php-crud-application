@@ -63,7 +63,7 @@
                             <?php echo $result['qty']; ?>
                         </td>
                         <td>
-                            <a href="update.php?id1=<?php echo $result['id']; ?>" class="btn btn-warning">
+                            <a href="edit.php?id1=<?php echo $result['id']; ?>" class="btn btn-warning">
                                 Edit
                             </a>
 
