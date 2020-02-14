@@ -4,7 +4,7 @@
     require 'connection.php';
 
     $getId = $_GET['id1'];
-    $selectData = mysqli_query($conn, "select * from datas where id = '$getId'");
+    $selectData = mysqli_query($conn, "select * from products where id = '$getId'");
 
     if (isset($_POST['update']) == "Update") {
         $brand = $_POST['brand'];
@@ -23,13 +23,13 @@
 
             move_uploaded_file($_FILES['photo']['tmp_name'],$photo);
 
-            $updated = mysqli_query($conn, "UPDATE datas set avatar = '$tmp$avatar', brand = '$brand', model = '$model', qty = '$quantity' WHERE ID = '$getId'");
+            $updated = mysqli_query($conn, "UPDATE products set avatar = '$tmp$avatar', brand = '$brand', model = '$model', qty = '$quantity' WHERE ID = '$getId'");
         } else {
-            $updated = mysqli_query($conn, "UPDATE datas set brand = '$brand', model = '$model', qty = '$quantity' WHERE ID = '$getId'");
+            $updated = mysqli_query($conn, "UPDATE products set brand = '$brand', model = '$model', qty = '$quantity' WHERE ID = '$getId'");
         }
     }
 
-    $selectData = mysqli_query($conn, "select * from datas where id = '$getId'");
+    $selectData = mysqli_query($conn, "select * from products where id = '$getId'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,7 @@
 <body>
     <div class="container">
         <form class="form" action="" method="POST" enctype="multipart/form-data">
-            <?php while($records = mysqli_fetch_array($selectData, MYSQLI_ASSOC)) { ?>
+            <?php while ($records = mysqli_fetch_array($selectData, MYSQLI_ASSOC)) { ?>
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3" name="brand">Brand:</label>
                     <div class="col-md-4 col-sm-4">

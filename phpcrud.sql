@@ -19,16 +19,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `phpcrud`
+-- Database: `ecommerce`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `datas`
+-- Table structure for table `products`
 --
 
-CREATE TABLE `datas` (
+CREATE TABLE `products` (
   `id` int(5) NOT NULL,
   `avatar` varchar(200) NOT NULL,
   `brand` varchar(50) NOT NULL,
@@ -37,10 +37,10 @@ CREATE TABLE `datas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `datas`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `datas` (`id`, `avatar`, `brand`, `model`, `qty`) VALUES
+INSERT INTO `products` (`id`, `avatar`, `brand`, `model`, `qty`) VALUES
 (4, '461screen.png', 'Nokia', 'n55', 20),
 (5, '27pexels-photo-355296.jpeg', 'lenovo', 'L15', 15);
 
@@ -69,9 +69,9 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 --
 
 --
--- Indexes for table `datas`
+-- Indexes for table `products`
 --
-ALTER TABLE `datas`
+ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -86,9 +86,9 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `datas`
+-- AUTO_INCREMENT for table `products`
 --
-ALTER TABLE `datas`
+ALTER TABLE `products`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --

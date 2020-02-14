@@ -7,9 +7,9 @@
 https://github.com/gauravmak/code-review-repo.git
 ```
 
-2) Create the "phpcrud" database in MySql.
+2) Create the "ecommerce" database in MySql.
 
-3) Import the phpcrud.sql file.
+3) Import the ecommerce.sql file.
 
 4) Database connection changes in connection.php file.
 

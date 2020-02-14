@@ -29,7 +29,7 @@
         } else {
             move_uploaded_file($_FILES['photo']['tmp_name'],$photo);
 
-            $inserted = mysqli_query($conn, "insert into datas(avatar,brand,model,qty) values('$tmp$avatar', '$brand', '$model', '$quantity')");
+            $inserted = mysqli_query($conn, "insert into products(avatar,brand,model,qty) values('$tmp$avatar', '$brand', '$model', '$quantity')");
         }
     }
 ?>

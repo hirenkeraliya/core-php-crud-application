@@ -1,23 +1,23 @@
 <?php
     require 'connection.php';
 
-    $results = mysqli_query($conn, "select * from datas");
+    $results = mysqli_query($conn, "select * from products");
 
     if (isset($_GET['id1'])) {
         $deleteId = $_GET['id1'];
 
-        $selectData = mysqli_query($conn, "select * from datas where id = '$deleteId'");
+        $selectData = mysqli_query($conn, "select * from products where id = '$deleteId'");
 
         while ($records = mysqli_fetch_array($selectData, MYSQLI_ASSOC)) {
             if (file_exists('images/'.$records['avatar'])) {
                 unlink('images/'.$records['avatar']);
             }
         }
-        $deleted = mysqli_query($conn, "delete from datas where id = '$deleteId'");
+        $deleted = mysqli_query($conn, "delete from products where id = '$deleteId'");
     }
-    $results = mysqli_query($conn, "select * from datas");
-
+    $results = mysqli_query($conn, "select * from products");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
