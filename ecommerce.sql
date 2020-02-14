@@ -33,14 +33,14 @@ CREATE TABLE `products` (
   `avatar` varchar(200) NOT NULL,
   `brand_name` varchar(50) NOT NULL,
   `model` varchar(50) NOT NULL,
-  `qty` int(5) NOT NULL
+  `quantity` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `avatar`, `brand_name`, `model`, `qty`) VALUES
+INSERT INTO `products` (`id`, `avatar`, `brand_name`, `model`, `quantity`) VALUES
 (4, '461screen.png', 'Nokia', 'n55', 20),
 (5, '27pexels-photo-355296.jpeg', 'lenovo', 'L15', 15);
 

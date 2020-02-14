@@ -1,21 +1,19 @@
 <?php
     require 'connection.php';
 
-    $results = mysqli_query($conn, "select * from products");
-
     if (isset($_GET['product_id'])) {
-        $deleteId = $_GET['product_id'];
+        $deleteProductId = $_GET['product_id'];
+        $selectData = mysqli_query($connection, "select avatar from products where id = " . $deleteProductId);
 
-        $selectData = mysqli_query($conn, "select * from products where id = '$deleteId'");
-
-        while ($records = mysqli_fetch_array($selectData, MYSQLI_ASSOC)) {
-            if (file_exists('images/'.$records['avatar'])) {
-                unlink('images/'.$records['avatar']);
-            }
+        $avatarPath = mysqli_fetch_array($selectData, MYSQLI_ASSOC)['avatar'];
+        if (file_exists('images/'.$avatarPath)) {
+            unlink('images/'.$avatarPath);
         }
-        $deleted = mysqli_query($conn, "delete from products where id = '$deleteId'");
+
+        $isDeleted = mysqli_query($connection, "delete from products where id = " . $deleteProductId);
     }
-    $results = mysqli_query($conn, "select * from products");
+
+    $products = mysqli_query($connection, "select * from products");
 ?>
 
 <!DOCTYPE html>
@@ -45,29 +43,29 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($results as $result) { ?>
+                <?php foreach ($products as $product) { ?>
                     <tr>
                         <td>
-                            <?php echo $result['id']; ?>
+                            <?php echo $product['id']; ?>
                         </td>
                         <td>
-                            <img src="images/<?php echo $result['avatar']; ?>" width="100px" height="100px" class="rounded-circle">
+                            <img src="images/<?php echo $product['avatar']; ?>" width="100px" height="100px" class="rounded-circle">
                         </td>
                         <td>
-                            <?php echo $result['brand_name']; ?>
+                            <?php echo $product['brand_name']; ?>
                         </td>
                         <td>
-                            <?php echo $result['model']; ?>
+                            <?php echo $product['model']; ?>
                         </td>
                         <td>
-                            <?php echo $result['qty']; ?>
+                            <?php echo $product['quantity']; ?>
                         </td>
                         <td>
-                            <a href="edit.php?product_id=<?php echo $result['id']; ?>" class="btn btn-warning">
+                            <a href="edit.php?product_id=<?php echo $product['id']; ?>" class="btn btn-warning">
                                 Edit
                             </a>
 
-                            <button type="submit" class="btn btn-danger" onclick="deleteRecord();">
+                            <button type="submit" class="btn btn-danger" onclick="deleteRecord(<?php echo $product['id'];?>);">
                                 Delete
                             </button>
                         </td>
@@ -79,30 +77,17 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/alertify.min.js"></script>
     <script>
-        function deleteRecord() {
+        function deleteRecord(deleteProductId) {
             alertify.confirm("Confirm Msg","Are you sure want to delete the record?", function () {
-                window.location ="index.php?act=delete&product_id=<?php echo $result['id']; ?>";
+                window.location ="index.php?act=delete&product_id=" + deleteProductId;
+
                 alertify.set('notifier','position', 'top-center');
             }, function(){});
         }
     </script>
 
     <?php
-        if (isset($inserted) == true) {
-            echo"<script type='text/javascript'>
-                alertify.set('notifier','position', 'top-center');
-                alertify.success('Record Inserted Successfully.');
-            </script>";
-        }
-
-        if (isset($updated) == true) {
-            echo"<script type='text/javascript'>
-                alertify.set('notifier','position', 'top-center');
-                alertify.success('Record Updated Successfully.');
-            </script>";
-        }
-
-        if (isset($deleted) == true) {
+        if (isset($isDeleted) == true) {
             echo"<script type='text/javascript'>
                 alertify.set('notifier','position', 'top-center');
                 alertify.success('Record Deleted Successfully.');

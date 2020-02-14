@@ -6,9 +6,9 @@
         $brandName = $_POST['brand_name'];
         $model = $_POST['model'];
         $quantity = $_POST['quantity'];
-        $tmp = rand(1, 100);
+        $temporaryNumber = rand(1, 100);
         $avatar = $_FILES['photo']['name'];
-        $photo ='images/'.$tmp.$avatar;
+        $photo = 'images/'.$temporaryNumber.$avatar;
 
         if (empty($brandName) || empty($model) || empty($quantity) || empty($avatar)) {
             if (empty($brandName)) {
@@ -27,9 +27,9 @@
                 $_SESSION['error']['avatar'] = "<font color='red'>Avatar Require</font>";
             }
         } else {
-            move_uploaded_file($_FILES['photo']['tmp_name'],$photo);
+            move_uploaded_file($_FILES['photo']['tmp_name'], $photo);
 
-            $inserted = mysqli_query($conn, "insert into products(avatar,brand_name,model,qty) values('$tmp$avatar', '$brandName', '$model', '$quantity')");
+            $isInserted = mysqli_query($connection, "insert into products(avatar, brand_name, model, quantity) values('".$temporaryNumber.$avatar."', '".$brandName."', '".$model."', '".$quantity."')");
         }
     }
 ?>
@@ -114,7 +114,7 @@
 
                 <div class="col-md-3">
                     <a href="index.php" class="btn btn-secondary">
-                        View Records
+                        View Products
                     </a>
                 </div>
             </div>
@@ -124,10 +124,10 @@
     <script src="js/alertify.min.js"></script>
 
     <?php
-        if (isset($inserted) == true) {
+        if (isset($isInserted) == true) {
             echo"<script type='text/javascript'>
                 alertify.set('notifier','position', 'top-center');
-                alertify.success('Record Inserted Successfully.');
+                alertify.success('Product Inserted Successfully.');
             </script>";
         }
     ?>
