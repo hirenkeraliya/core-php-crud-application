@@ -7,11 +7,11 @@
     $selectData = mysqli_query($conn, "select * from products where id = '$getId'");
 
     if (isset($_POST['update']) == "Update") {
-        $brand = $_POST['brand'];
+        $brandName = $_POST['brand_name'];
         $model = $_POST['model'];
         $quantity = $_POST['quantity'];
         $tmp = rand(1, 100);
-        $avatar =$_FILES['photo']['name'];
+        $avatar = $_FILES['photo']['name'];
         $photo ='images/'.$tmp.$avatar;
 
         if ($_FILES['photo']['name'] != '') {
@@ -23,9 +23,9 @@
 
             move_uploaded_file($_FILES['photo']['tmp_name'],$photo);
 
-            $updated = mysqli_query($conn, "UPDATE products set avatar = '$tmp$avatar', brand = '$brand', model = '$model', qty = '$quantity' WHERE ID = '$getId'");
+            $updated = mysqli_query($conn, "UPDATE products set avatar = '$tmp$avatar', brand_name = '$brandName', model = '$model', qty = '$quantity' WHERE ID = '$getId'");
         } else {
-            $updated = mysqli_query($conn, "UPDATE products set brand = '$brand', model = '$model', qty = '$quantity' WHERE ID = '$getId'");
+            $updated = mysqli_query($conn, "UPDATE products set brand_name = '$brandName', model = '$model', qty = '$quantity' WHERE ID = '$getId'");
         }
     }
 
@@ -47,9 +47,10 @@
         <form class="form" action="" method="POST" enctype="multipart/form-data">
             <?php while ($records = mysqli_fetch_array($selectData, MYSQLI_ASSOC)) { ?>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3" name="brand">Brand:</label>
+                    <label class="control-label col-md-3 col-sm-3">Brand Name:</label>
+
                     <div class="col-md-4 col-sm-4">
-                        <input type="text" name="brand" value="<?php echo $records['brand']; ?>" class="form-control">
+                        <input type="text" name="brand_name" value="<?php echo $records['brand_name']; ?>" class="form-control">
                     </div>
                 </div>
 

@@ -3,16 +3,16 @@
     require 'connection.php';
 
     if (isset($_POST['insert']) == "Insert") {
-        $brand = $_POST['brand'];
+        $brandName = $_POST['brand_name'];
         $model = $_POST['model'];
         $quantity = $_POST['quantity'];
         $tmp = rand(1, 100);
         $avatar = $_FILES['photo']['name'];
         $photo ='images/'.$tmp.$avatar;
 
-        if (empty($brand) || empty($model) || empty($quantity) || empty($avatar)) {
-            if (empty($brand)) {
-                $_SESSION['error']['brand'] = "<font color='red'>Brand Require</font>";
+        if (empty($brandName) || empty($model) || empty($quantity) || empty($avatar)) {
+            if (empty($brandName)) {
+                $_SESSION['error']['brand_name'] = "<font color='red'>Brand Name Require</font>";
             }
 
             if (empty($model)) {
@@ -29,7 +29,7 @@
         } else {
             move_uploaded_file($_FILES['photo']['tmp_name'],$photo);
 
-            $inserted = mysqli_query($conn, "insert into products(avatar,brand,model,qty) values('$tmp$avatar', '$brand', '$model', '$quantity')");
+            $inserted = mysqli_query($conn, "insert into products(avatar,brand_name,model,qty) values('$tmp$avatar', '$brandName', '$model', '$quantity')");
         }
     }
 ?>
@@ -48,17 +48,17 @@
     <div class="container">
         <form class="form" action="" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3" name="brand">
-                    Brand:
+                <label class="control-label col-md-3 col-sm-3" name="brand_name">
+                    Brand Name:
                 </label>
 
                 <div class="col-md-4 col-sm-4">
-                    <input type="text" name="brand" class="form-control">
+                    <input type="text" name="brand_name" class="form-control">
                 </div>
 
                 <?php
-                    echo isset($_SESSION['error']['brand']) ? $_SESSION['error']['brand'] : "";
-                    unset($_SESSION['error']['brand']);
+                    echo isset($_SESSION['error']['brand_name']) ? $_SESSION['error']['brand_name'] : "";
+                    unset($_SESSION['error']['brand_name']);
                 ?>
             </div>
 

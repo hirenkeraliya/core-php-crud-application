@@ -38,7 +38,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Avatar</th>
-                    <th>Brand</th>
+                    <th>Brand Name</th>
                     <th>Model</th>
                     <th>Quantity</th>
                     <th>Action</th>
@@ -54,7 +54,7 @@
                             <img src="images/<?php echo $result['avatar']; ?>" width="100px" height="100px" class="rounded-circle">
                         </td>
                         <td>
-                            <?php echo $result['brand']; ?>
+                            <?php echo $result['brand_name']; ?>
                         </td>
                         <td>
                             <?php echo $result['model']; ?>
