@@ -3,7 +3,7 @@
 
     require 'connection.php';
 
-    $getId = $_GET['id1'];
+    $getId = $_GET['product_id'];
     $selectData = mysqli_query($conn, "select * from products where id = '$getId'");
 
     if (isset($_POST['update']) == "Update") {

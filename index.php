@@ -3,8 +3,8 @@
 
     $results = mysqli_query($conn, "select * from products");
 
-    if (isset($_GET['id1'])) {
-        $deleteId = $_GET['id1'];
+    if (isset($_GET['product_id'])) {
+        $deleteId = $_GET['product_id'];
 
         $selectData = mysqli_query($conn, "select * from products where id = '$deleteId'");
 
@@ -63,7 +63,7 @@
                             <?php echo $result['qty']; ?>
                         </td>
                         <td>
-                            <a href="edit.php?id1=<?php echo $result['id']; ?>" class="btn btn-warning">
+                            <a href="edit.php?product_id=<?php echo $result['id']; ?>" class="btn btn-warning">
                                 Edit
                             </a>
 
@@ -81,7 +81,7 @@
     <script>
         function deleteRecord() {
             alertify.confirm("Confirm Msg","Are you sure want to delete the record?", function () {
-                window.location ="index.php?act=delete&id1=<?php echo $result['id']; ?>";
+                window.location ="index.php?act=delete&product_id=<?php echo $result['id']; ?>";
                 alertify.set('notifier','position', 'top-center');
             }, function(){});
         }
